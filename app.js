@@ -20,6 +20,12 @@ function loadUrls() {
             return {};
         }
         const data = fs.readFileSync(dataFile, 'utf8');
+        
+        // Handle empty file
+        if (!data.trim()) {
+            return {};
+        }
+        
         return JSON.parse(data);
     } catch (error) {
         console.error('Error loading URLs:', error);
