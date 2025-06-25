@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="50%" style="stop-color:#764ba2"/>
+      <stop offset="100%" style="stop-color:#1e3c72"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" ry="6" fill="url(#bg)"/>
+  
+  <!-- Chain link icon representing URL shortening -->
+  <!-- Long chain (3 links) -->
+  <g transform="translate(3, 11)">
+    <rect x="0" y="0" width="6" height="4" rx="2" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="4" y="0" width="6" height="4" rx="2" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="8" y="0" width="6" height="4" rx="2" fill="none" stroke="white" stroke-width="1.2"/>
+  </g>
+  
+  <!-- Arrow -->
+  <path d="M 16 13 L 20 13 M 18 11 L 20 13 L 18 15" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Short chain (1 thick link) -->
+  <g transform="translate(22, 10)">
+    <rect x="0" y="0" width="7" height="6" rx="3" fill="none" stroke="white" stroke-width="2"/>
+    <circle cx="3.5" cy="3" r="1" fill="white"/>
+  </g>
+  
+  <!-- Small "S" indicator -->
+  <text x="25" y="28" font-family="Arial" font-size="8" font-weight="bold" fill="white" opacity="0.7">S</text>
+</svg>

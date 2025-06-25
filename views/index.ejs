@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="mask-icon" href="/favicon.svg" color="#667eea">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <div class="container">
+        <h1>🔗 URL Shortener</h1>
+        <p class="subtitle">Transform long URLs into short, shareable links instantly</p>
+        
+        <div class="form-section">
+            <% if (typeof error !== 'undefined') { %>
+                <div class="error">⚠️ <%= error %></div>
+            <% } %>
+            
+            <form action="/shorten" method="POST">
+                <div class="form-group">
+                    <label for="originalUrl">📝 Enter a URL to shorten:</label>
+                    <div class="input-container">
+                        <input type="url" id="originalUrl" name="originalUrl" placeholder="https://example.com/your-very-long-url" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">✨ Shorten URL</button>
+            </form>
+        </div>
+
+        <div class="urls-section">
+            <h2 class="section-title">📋 Your Shortened URLs</h2>
+            <% if (Object.keys(urls).length === 0) { %>
+                <div class="no-urls">
+                    <div class="no-urls-icon">🔗</div>
+                    <div>No URLs shortened yet. Create your first short URL above!</div>
+                </div>
+            <% } else { %>
+                <% Object.values(urls).reverse().forEach(url => { %>
+                    <div class="url-item">
+                        <a href="/<%= url.shortId %>" class="short-url" target="_blank">
+                            🔗 <%= baseUrl %>/<%= url.shortId %>
+                            <span class="copy-btn" onclick="copyToClipboard('<%= baseUrl %>/<%= url.shortId %>')" title="Copy to clipboard">📋</span>
+                        </a>
+                        <div class="original-url">
+                            🌐 <%= url.originalUrl %>
+                        </div>
+                        <div class="url-stats">
+                            <span class="stat-item">📅 <%= new Date(url.createdAt).toLocaleDateString() %></span>
+                            <span class="stat-item">👆 <%= url.clicks %> clicks</span>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Create a temporary notification
+                const notification = document.createElement('div');
+                notification.textContent = '✅ Copied to clipboard!';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #10b981, #059669);
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    z-index: 1000;
+                    animation: slideInRight 0.3s ease-out;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            });
+        }
+        
+        // Add slide-in animation for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Not Found - URL Shortener</title>
+    <link rel="stylesheet" href="/css/error.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="mask-icon" href="/favicon.svg" color="#667eea">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <div class="container">
+        <div class="error-icon">🔍</div>
+        <h1>Short URL Not Found</h1>
+        <p>
+            The short URL <span class="short-id"><%= shortId %></span> does not exist in our system.
+        </p>
+        
+        <div class="suggestions">
+            <h3>💡 What you can do:</h3>
+            <div class="suggestion-item">✓ Double-check the URL for typos</div>
+            <div class="suggestion-item">✓ Make sure you copied the complete link</div>
+            <div class="suggestion-item">✓ Create a new short URL if needed</div>
+        </div>
+        
+        <a href="/" class="home-link">
+            <span>🏠</span>
+            <span>Back to Home</span>
+        </a>
+    </div>
+</body>
+</html>
